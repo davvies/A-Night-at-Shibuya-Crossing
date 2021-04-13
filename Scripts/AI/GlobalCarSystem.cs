@@ -12,6 +12,8 @@ public class GlobalCarSystem : MonoBehaviour
     [SerializeField] GameObject[] Lanes = default;
     [SerializeField] GlobalNavigationSystem navigationSystem = default;
     [SerializeField] float deltaSpawnTime = 1.3f; //rate at which cars are brought back off-screen
+    const float decreaseDScalar = 0.045f;
+    const float initalTimer = 5f;
     #endregion
 
     public List<int> AvailableCarsForSpawn; //list of all non-active cars
@@ -41,7 +43,7 @@ public class GlobalCarSystem : MonoBehaviour
         internalClock += Time.deltaTime;
         startClock += Time.deltaTime;
 
-        if (startClock > 5) //initial starting delay
+        if (startClock > initalTimer) //initial starting delay
         {
             if (internalClock >= deltaSpawnTime) //fixed time delay
             {
@@ -61,7 +63,7 @@ public class GlobalCarSystem : MonoBehaviour
                     AvailableCarsForSpawn.Remove(AvailableCarsForSpawn[randomCarIndex]); //remove car availability after its left
                 }
                 internalClock = 0; //clock cycle reset
-                deltaSpawnTime -= 0.045f; //rate of car decrease
+                deltaSpawnTime -= decreaseDScalar; //rate of car decrease
             }
         }
     }
