@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>Class <c>LocalCarNavigation</c> Handle AI car navigation </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class LocalCarNavigation : MonoBehaviour
 {
